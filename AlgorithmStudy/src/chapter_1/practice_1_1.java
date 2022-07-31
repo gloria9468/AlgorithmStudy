@@ -44,11 +44,34 @@ public class practice_1_1 {
 		String scan_in = null;
 		do {
 			scan_in = scan.next();
-			al.add(Integer.parseInt(scan_in));
+			if(!"stop".equals(scan_in)) al.add(Integer.parseInt(scan_in));
+			custom_sort(al);
 		} while(!"stop".equals(scan_in));
 		
-		//System.out.println(al);
+		System.out.println("입력한 숫자들은 " + al + "입니다.");
+		int get_median = 0;
+		double medi = (double)al.size() / 2;
 		
+		if(medi % 2 > 0) {
+			//갯수가 홀수인 경우 
+			medi = Math.ceil(medi);
+			get_median = al.get((int)medi -1);
+		}else {
+			//갯수가 짝수인 경우
+			get_median =  (al.get((int)medi -1) + al.get((int)medi))/2;
+		}
+		System.out.println("이 중 중앙값은 " + get_median);
+	}
+	void custom_sort(ArrayList<Integer> al) { //1 2 4 5 3  //1 2 3 5 4  //1 2 3 4 5
+		int al_size = al.size();
+		for(int i =0; i < al_size; i++ ) {
+			int al_last = al.get(al_size -1);
+			if(al.get(i) > al_last) {
+				int get_i = al.get(i);
+				al.set(i, al_last);
+				al.set(al_size -1, get_i);
+			}
+		}
 	}
 	
 		
